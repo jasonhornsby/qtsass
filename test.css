@@ -1,0 +1,7 @@
+/* This comment will appear in generated css file */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+  color: blue; }
+
+QTreeView::item:selected {
+  background-color: qlineargradient(0, 0, 0, 1, 0.2 #3f3f3f, 0.8 red);
+  color: #ff0a0a80; }

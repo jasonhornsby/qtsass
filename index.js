@@ -1,11 +1,37 @@
 #!/usr/bin/env node
 var converter = require('./converter')
+var fs = require("fs")
+var programm = require("commander")
 
-var input = process.argv[2]
-var output = process.argv[3]
+programm
+    .version("0.01")
+    .option('-w, --watch', "Watch for filechanges")
 
-if(!input || !output) {
-    console.log("Input missing")
+programm
+    .command('build <input> <output>')
+    .action(function(input, output){
+        console.log("Build", input, output)
+        go(input, output)
+    })
+
+programm.parse(process.argv)
+
+function go(input, output) {
+    if(programm.watch) {
+        startWatching(input, output)
+    } else {
+        start(input, output)
+    }
 }
-converter.compileToCss(input, output)
 
+function startWatching(input, output) {
+    fs.watchFile(input, {
+        interval: 1000
+    }, function () {
+        converter.compileToCss(input, output)
+    })
+}
+
+function start(input, output) {
+    converter.compileToCss(input, output)
+}
