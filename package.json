@@ -1,6 +1,6 @@
 {
   "name": "node-sassqt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Sass compiler bindings for QT flavoured css",
   "main": "index.js",
   "scripts": {
