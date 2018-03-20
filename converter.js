@@ -37,7 +37,8 @@ exports.compileToCss = function(input, output) {
     var file = fs.readFileSync(input, "utf8")
 
     sass.render({
-        data: cssConform(file)
+        data: cssConform(file),
+        includePaths: input
     }, (err, res) => {
         if(err) {
             console.log("Error while compiling\n" , err)
