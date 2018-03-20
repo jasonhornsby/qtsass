@@ -30,15 +30,30 @@ function convertRGBA(file) {
         return color.toHex8String()
     })
 }
+var importRE = new RegExp(/@import "(.*?)"/, 'g')
+
+function checkIfImports(file) {
+    ret = ""
+    Imp = file.replace(importRE, (match) => {
+        path = match.split('"')[1]
+        path = path.split('"')[0]
+        file = fs.readFileSync(path+ ".scss", "utf8")
+        ret += cssConform(file)
+        return ""
+    });
+    return ret += Imp
+}
 
 var exports = module.exports = {};
 
 exports.compileToCss = function(input, output) {
     var file = fs.readFileSync(input, "utf8")
 
+    file = checkIfImports(file)
+
     sass.render({
         data: cssConform(file),
-        includePaths: input
+        includePaths: [input]
     }, (err, res) => {
         if(err) {
             console.log("Error while compiling\n" , err)
