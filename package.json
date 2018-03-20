@@ -1,12 +1,12 @@
 {
-  "name": "SassQT",
-  "version": "0.0.1",
+  "name": "node-sassqt",
+  "version": "0.0.2",
   "description": "Sass compiler bindings for QT flavoured css",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jason Hornsby",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.15.1",
